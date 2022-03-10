@@ -6,3 +6,6 @@ node_modules
 *.lo
 *.o
 *.obj
+solidity_*
+*.tar.gz
+*.zip
