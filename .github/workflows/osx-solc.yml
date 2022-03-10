@@ -39,8 +39,6 @@ jobs:
         source ~/.bash_profile
         chomd +x 001.sh
         ./001.sh
-        chmod +x build_solc.sh
-        ./build_solc.sh
 
     - uses: actions/upload-artifact@v2
       with:
