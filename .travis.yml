@@ -1,21 +1,8 @@
 os: osx
 
-
-osx_image: xcode13.1
-osx_image: xcode12.3
-
-
-
-language: node_js
-node_js: '10'
-script:
-  - npm run build
-  - travis_retry npm run travis
-
 language: cpp
-os: osx
-
-osx_image: xcode12.3
+compiler:
+ - clang
 
 install:
 - bash setup.sh
@@ -26,8 +13,7 @@ install:
 - brew install coreutils
 - brew install diffutils
 
-compiler:
- - clang
+
 
 jobs:
   include:
