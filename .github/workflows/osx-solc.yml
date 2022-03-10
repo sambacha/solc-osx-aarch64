@@ -40,13 +40,14 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          path: build/
-          name: builddir-${{ matrix.os }}
+          path: ${{ github.workspace }}/solidity/build/
+          name: solc-${{ matrix.os }}
 
-
+      # TODO - check compiler for defects && for proper +semver
       - name: make smoketest
         run: echo "SMOKETST TODO"
         timeout-minutes: 5
+
       - name: make checksolc
         run: echo "SOLC CHECK TODO"
         timeout-minutes: 10
