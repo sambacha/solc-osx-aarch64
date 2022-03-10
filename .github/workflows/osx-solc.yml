@@ -35,7 +35,7 @@ jobs:
           echo "LIBRARY_PATH=$HOME/local/lib" >> $GITHUB_ENV
           echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/local/lib" >> $GITHUB_ENV
           source ~/.bash_profile
-          chomd +x 001.sh
+          chmod +x 001.sh
           ./001.sh
 
       - uses: actions/upload-artifact@v2
