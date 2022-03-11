@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+
 echo $BASH_VERSION
 
 VERSION=v0.8.10
@@ -22,7 +23,5 @@ export MAKEFLAGS=-j10
 cmake .. -DCMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE:-Release}" $CMAKE_OPTIONS -G "Unix Makefiles" -DTESTS=0 -DSOLC_LINK_STATIC=1
 
 gmake
-
-sleep 1
 
 exit 0

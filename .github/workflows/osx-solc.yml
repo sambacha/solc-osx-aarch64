@@ -11,8 +11,6 @@ on:
   schedule:
     - cron: '0 5 * * MON'
 
-name: macOS aarch64
-
 jobs:
   build:
     strategy:
@@ -27,28 +25,29 @@ jobs:
         with:
           submodules: recursive
 
-    - if: runner.os == 'macOS'
-      run: |
-        echo "SDKROOT=$(xcrun -sdk macosx11.1 --show-sdk-path)" >> $GITHUB_ENV
-        echo "MACOSX_DEPLOYMENT_TARGET=$(xcrun -sdk macosx11.1 --show-sdk-platform-version)" >> $GITHUB_ENV
-        chmod +x setup.sh
-        ./setup.sh
-        echo "C_INCLUDE_PATH=$HOME/local/include" >> $GITHUB_ENV
-        echo "LIBRARY_PATH=$HOME/local/lib" >> $GITHUB_ENV
-        echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/local/lib" >> $GITHUB_ENV
-        source ~/.bash_profile
-        chomd +x 001.sh
-        ./001.sh
+      - if: runner.os == 'macOS'
+        run: |
+          echo "SDKROOT=$(xcrun -sdk macosx11.1 --show-sdk-path)" >> $GITHUB_ENV
+          echo "MACOSX_DEPLOYMENT_TARGET=$(xcrun -sdk macosx11.1 --show-sdk-platform-version)" >> $GITHUB_ENV
+          chmod +x setup.sh
+          ./setup.sh
+          echo "C_INCLUDE_PATH=$HOME/local/include" >> $GITHUB_ENV
+          echo "LIBRARY_PATH=$HOME/local/lib" >> $GITHUB_ENV
+          echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/local/lib" >> $GITHUB_ENV
+          source ~/.bash_profile
+          chmod +x 001.sh
+          ./001.sh
 
-    - uses: actions/upload-artifact@v2
-      with:
-        path: build/
-        name: builddir-${{ matrix.os }}
-  
+      - uses: actions/upload-artifact@v2
+        with:
+          path: ${{ github.workspace }}/solidity/build/
+          name: solc-${{ matrix.os }}
 
-    - name: make smoketest
-      run: echo "SMOKETST TODO"
-      timeout-minutes: 5
-    - name: make checksolc
-      run: echo "SOLC CHECK TODO"
-      timeout-minutes: 10
+      # TODO - check compiler for defects && for proper +semver
+      - name: make smoketest
+        run: echo "SMOKETST TODO"
+        timeout-minutes: 5
+
+      - name: make checksolc
+        run: echo "SOLC CHECK TODO"
+        timeout-minutes: 10
