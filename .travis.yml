@@ -4,6 +4,15 @@ language: cpp
 compiler:
  - clang
 
+before_cache:
+  - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then brew cleanup; fi
+  - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then find /usr/local/Homebrew \! -regex ".+\.git.+" -delete; fi
+
+cache:
+  directories:
+    - $HOME/Library/Caches/Homebrew
+    - /usr/local/Homebrew
+
 install:
 - bash setup.sh
 
@@ -12,8 +21,7 @@ skip_cleanup: true
 jobs:
   include:
     - osx_image: xcode13.1  
-#    - osx_image: xcode12.2 
+    - osx_image: xcode12.2 
 
 script:
 - ./wget.sh
-
