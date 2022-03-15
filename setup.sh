@@ -53,11 +53,11 @@ function validate_checksum {
 if [ ! -f /usr/local/lib/libz3.a ] # if this file does not exists (cache was not restored), rebuild dependencies
 then
   brew unlink python
-  brew install boost
-  brew install cmake
-  brew install wget
-  brew install coreutils
-  brew install diffutils
+  brew install boost --skip-recommended
+  brew install cmake --skip-recommended
+  brew install wget --skip-recommended
+  brew install coreutils --skip-recommended
+  brew install diffutils --skip-recommended
   ./install_obsolete_jsoncpp_1_7_4.sh
 
   # z3
