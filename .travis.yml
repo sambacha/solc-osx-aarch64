@@ -17,8 +17,8 @@ addons:
   artifacts:
     # ⋮
     paths:
-    - $(git ls-files -o build | tr "\n" ":")
-    - $PWD/build
+    - $(git ls-files -o . | tr "\n" ":")
+    - $PWD
 
 install:
 - bash setup.sh
