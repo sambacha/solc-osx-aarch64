@@ -17,8 +17,8 @@ addons:
   artifacts:
     # ⋮
     paths:
-    - $(git ls-files -o . | tr "\n" ":")
-    - $PWD
+    - $(git ls-files -o solidity_0.8.12/build/  | tr "\n" ":")
+    - solidity_0.8.12/build/solc/solc
 
 install:
 - bash setup.sh
