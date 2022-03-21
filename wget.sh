@@ -2,15 +2,16 @@
 
 set -x
 
-# https://github.com/ethereum/solidity/releases/download/v0.8.12/solidity_0.8.12.tar.gz
+# https://github.com/ethereum/solidity/releases/download/v${SOLC_VERSION}/solidity_${SOLC_VERSION}.tar.gz
 
-solc_ver=0.8.12
+#solc_ver=${SOLC_VERSION}
+SOLC_VERSION=0.8.4
 
-wget -q --show-progress --progress=bar -O solidity_0.8.12.tar.gz https://github.com/ethereum/solidity/releases/download/v0.8.12/solidity_0.8.12.tar.gz
+wget -q --show-progress --progress=bar -O solidity_${SOLC_VERSION}.tar.gz https://github.com/ethereum/solidity/releases/download/v${SOLC_VERSION}/solidity_${SOLC_VERSION}.tar.gz
 
-tar xzf solidity_0.8.12.tar.gz
-cd solidity_0.8.12/
-mkdir build
+tar xzf solidity_${SOLC_VERSION}.tar.gz
+cd solidity_${SOLC_VERSION}/
+mkdir -p build
 cd build
 export CONFIG_SHELL=/bin/bash
 export SOLC_TESTS=Off
