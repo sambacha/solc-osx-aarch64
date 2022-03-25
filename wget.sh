@@ -10,7 +10,7 @@ SOLC_VERSION=0.5.17
 wget -q -O solidity_${SOLC_VERSION}.tar.gz https://github.com/ethereum/solidity/archive/refs/tags/v0.6.3.tar.gz
 
 tar xzf solidity_${SOLC_VERSION}.tar.gz
-cd solidity_${SOLC_VERSION}/
+cd solidity-${SOLC_VERSION}/
 mkdir -p build
 cd build
 
